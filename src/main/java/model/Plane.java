@@ -1,11 +1,12 @@
 package model;
 
-public class Plane {
-    // These variables are the characteristics of a Plane
-    private Coordinates coordinates; // contains the coordinates of a Plane as a set of Coordinates 
-    private int speed;               // contains the speed of a Plane as an integer value
-    private int elevation;           // contains the level of elevation of a Plane as an integer value
-    private int elevateSeconds;      // contains the time break when the Plane is at speed(10) 
+import java.util.Observable;
+
+public class Plane extends Observable {
+    private Coordinates coordinates; 
+    private int speed;               
+    private int elevation;           
+    private int elevateSeconds;      
     
     /* 
     * This method is the constructor of the Plane which allows almost all 
@@ -16,6 +17,8 @@ public class Plane {
         this.coordinates = coordinates;
         this.speed = speed;
         this.elevation = elevation;
+
+        elevateSeconds = 0;
     }
     
     /*
