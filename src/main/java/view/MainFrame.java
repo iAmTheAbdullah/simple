@@ -29,6 +29,7 @@ public class MainFrame extends JFrame {
 
         // Create swing components
         planeStatements = new JTextArea();
+        planeStatements.setEditable(false);
         xAxisControlSlider = new JSlider(JSlider.HORIZONTAL, 0, 10, 5);
         speedControlSlider = new JSlider(JSlider.VERTICAL, 0, 10, 0);
         resetButton = new JButton("Reset");
