@@ -1,4 +1,4 @@
-# Simple Airplane Simulator
+# Simple Airplane Simulator (Work In Progress)
 
 This is a very simple airplane simulator created using the Java Swing API. The program allows the user to control the position and speed of the plane during its takeoff.
 
