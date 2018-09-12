@@ -3,6 +3,7 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
@@ -13,6 +14,7 @@ public class MainFrame extends JFrame {
     private JPanel planeControlsPanel;
     private JSlider xAxisControlSlider;
     private JSlider speedControlSlider;
+    private JButton resetButton;
 
     public MainFrame() {
         super("Simple Airplane Simulator");
@@ -29,12 +31,14 @@ public class MainFrame extends JFrame {
         planeStatements = new JTextArea();
         xAxisControlSlider = new JSlider(JSlider.HORIZONTAL, 0, 10, 5);
         speedControlSlider = new JSlider(JSlider.VERTICAL, 0, 10, 0);
+        resetButton = new JButton("Reset");
 
         // Adding the components
         add(planeStatements);
         add(planeControlsPanel);
         planeControlsPanel.add(xAxisControlSlider, BorderLayout.NORTH);
         planeControlsPanel.add(speedControlSlider, BorderLayout.CENTER);
+        planeControlsPanel.add(resetButton, BorderLayout.SOUTH);
 
         // Set settings of application
         setVisible(true);

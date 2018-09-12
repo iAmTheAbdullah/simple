@@ -93,3 +93,4 @@ public class Plane {
     public void setElevateSeconds(int elevateSeconds) {
         this.elevateSeconds = elevateSeconds;
     }
+}
