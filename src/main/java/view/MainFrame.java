@@ -54,6 +54,7 @@ public class MainFrame extends JFrame implements Observer {
         speedControlSlider.addChangeListener(passedController);
         resetButton = new JButton("Reset");
         resetButton.setName("Reset Button");
+        resetButton.addActionListener(passedController);
 
         // Adding the components
         add(planeStatementsPane);
@@ -78,5 +79,7 @@ public class MainFrame extends JFrame implements Observer {
 		
 		// Displays the status of the plane
         planeStatements.append(updateModel.getPlaneStatus());
+
+        if (passedModel.getSimulationTime() == 0) planeStatements.setText(null);
     }
 }

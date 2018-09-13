@@ -9,6 +9,6 @@ public class RunApplication {
         MainFrame mainApplication = new MainFrame(mainModel, mainController);
 
         mainModel.addObserver(mainApplication);
-        mainModel.initiateSimulation(0);
+        mainModel.initiateSimulation();
     }
 }

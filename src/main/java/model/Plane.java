@@ -45,6 +45,9 @@ public class Plane extends Observable {
         speed = 0;
         elevation = 0;
         elevateSeconds = 0;
+
+        setChanged();
+		notifyObservers(this);
     }
 
     public int getX() {

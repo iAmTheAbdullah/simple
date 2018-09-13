@@ -6,21 +6,23 @@ public class MainModel extends Observable {
     private Plane somePlane;
     private Runaway someRunaway;
     private String planeStatus;
+    private int simulationTime;
 
     public MainModel() {
         somePlane = new Plane(new Coordinates(5, 0), 0, 0);
         someRunaway = new Runaway(10, 100);
         planeStatus = "";
+        simulationTime = 0;
     }
 
-    public void initiateSimulation(int time) {
+    public void initiateSimulation() {
         while (somePlane.getY() < someRunaway.getHeight()) {
             try {
                 Thread.sleep(1000); // Adds a 1 second pause to the application
-                displayStatus(time);
+                displayStatus(simulationTime); System.out.println(planeStatus);
                 somePlane.movePlane();
 
-                time++;
+                simulationTime++;
 
                 // if (time == 2) somePlane.setSpeed(9); // for dev testing purposes
             }
@@ -38,14 +40,19 @@ public class MainModel extends Observable {
     public void displayStatus(int time) {
         planeStatus = "Seconds: " + time;
         planeStatus += "\nX: " + somePlane.getX() + " Y: " + somePlane.getY() + " Speed: " + somePlane.getSpeed() + " Elevation: " + somePlane.getElevation() + "\n";
-    
+
         setChanged();
 		notifyObservers(this);
-}
+    }
 
-    public void resetSimulation(int time) {
+    public void resetSimulation() {
         somePlane.resetPlane();
-        initiateSimulation(time);
+        simulationTime = 0;
+        
+        // THIS DOES NOT WORK FOR SOME REASON
+        if (planeStatus.equals("Plane in air") || planeStatus.equals("Take off failed")) {
+            initiateSimulation();
+        }
 
         setChanged();
 		notifyObservers(this);
@@ -57,6 +64,10 @@ public class MainModel extends Observable {
 
     public String getPlaneStatus() {
         return planeStatus;
+    }
+
+    public int getSimulationTime() {
+        return simulationTime;
     }
 
     // public static void main(String[] args) {
