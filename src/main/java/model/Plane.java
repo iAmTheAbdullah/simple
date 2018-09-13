@@ -1,18 +1,11 @@
 package model;
 
-import java.util.Observable;
-
-public class Plane extends Observable {
+public class Plane {
     private Coordinates coordinates; 
     private int speed;               
     private int elevation;           
     private int elevateSeconds;      
     
-    /* 
-    * This method is the constructor of the Plane which allows almost all 
-    * of the attributes of a Plane to be assigned a value, except for
-    * the elevateSeconds variable.
-    */
     public Plane(Coordinates coordinates, int speed, int elevation) {
         this.coordinates = coordinates;
         this.speed = speed;
@@ -21,18 +14,12 @@ public class Plane extends Observable {
         elevateSeconds = 0;
     }
     
-    /*
-    * This method moves the Plane by incrementing the y-Coordinate of
-    * the Plane with the speed.
-    */
     public void movePlane() {
         // sets the y-Coordinate of this specific Plane adds the speed on top of it.
         this.setY(this.getY() + speed);
+        updateElevation();
     }
 
-    /*
-    * This method causes the Plane to elevate when the speed of the Plane is at 10.
-    */
     public void updateElevation() {
         /*
         * Checks if the speed of the Plane is at 10 and if is, it increments the
@@ -46,54 +33,43 @@ public class Plane extends Observable {
             * If the elevateSeconds variable had exceeded the value of 1, the value
             * for the elevation variable is incremented by 1.
             */
-            if (elevateSeconds > 4) {
-                elevation++;
-            }
+            if (elevateSeconds > 4) elevation++;
         }
     }
 
-    // This method allows the x coordinate of a Plane to be returned as an integer value.
+    public void resetPlane() {
+        coordinates.setX(5);
+        coordinates.setY(0);
+        speed = 0;
+        elevation = 0;
+        elevateSeconds = 0;
+    }
+
     public int getX() {
         return coordinates.getX();
     }
 
-    // This method allows the y coordinate of a Plane to be returned as an integer value.
     public int getY() {
         return coordinates.getY();
     }
 
-    // This method allows the speed of a Plane to be returned as an integer value.
     public int getSpeed() {
         return speed;
     }
 
-    // This method allows the point of elevation of a Plane to be returned as an integer value.
     public int getElevation() {
         return elevation;
     }
 
-    // This method allows the x coordinate of a Plane to be assigned an integer value.
     public void setX(int x) {
         this.coordinates.setX(x);
     }
 
-    // This method allows the y coordinate of a Plane to be assigned an integer value.
     public void setY(int y) {
         this.coordinates.setY(y);
     }
 
-    // This method allows speed of a Plane to be assigned an integer value.
     public void setSpeed(int speed) {
         this.speed = speed;
-    }
-
-    // This method allows the elevation of a Plane to be assigned an integer value.
-    public void setElevation(int elevation) {
-        this.elevation = elevation;
-    }
-    
-    // This method allows the counter variable of the elevation of a Plane to be assigned an integer value.
-    public void setElevateSeconds(int elevateSeconds) {
-        this.elevateSeconds = elevateSeconds;
     }
 }

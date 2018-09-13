@@ -1,7 +1,11 @@
 package view;
 
+import model.MainModel;
+
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -11,7 +15,7 @@ import javax.swing.JSlider;
 import javax.swing.JTextArea;
 import javax.swing.text.DefaultCaret;
 
-public class MainFrame extends JFrame {
+public class MainFrame extends JFrame implements Observer {
     private JTextArea planeStatements;
     private JScrollPane planeStatementsPane;
     private JPanel planeControlsPanel;
@@ -19,7 +23,7 @@ public class MainFrame extends JFrame {
     private JSlider speedControlSlider;
     private JButton resetButton;
 
-    public MainFrame() {
+    public MainFrame(MainModel someModel) {
         super("Simple Airplane Simulator");
 
         initialiseFrame();
@@ -36,9 +40,12 @@ public class MainFrame extends JFrame {
         planeStatementsPane = new JScrollPane(planeStatements, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         DefaultCaret caret = (DefaultCaret) planeStatements.getCaret();
         caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
-        xAxisControlSlider = new JSlider(JSlider.HORIZONTAL, 0, 10, 5);
+        xAxisControlSlider = new JSlider(JSlider.HORIZONTAL, 0, 10, 5); 
+        xAxisControlSlider.setName("xAxis Slider");
         speedControlSlider = new JSlider(JSlider.VERTICAL, 0, 10, 0);
+        speedControlSlider.setName("Speed Slider");
         resetButton = new JButton("Reset");
+        resetButton.setName("Reset Button");
 
         // Adding the components
         add(planeStatementsPane);
@@ -53,5 +60,11 @@ public class MainFrame extends JFrame {
         setSize(500, 600);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    // Method declaration from Observer Interface
+    @Override
+    public void update(Observable o, Object arg) {
+        
     }
 }
