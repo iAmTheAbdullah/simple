@@ -1,6 +1,8 @@
 package model;
 
-public class Plane {
+import java.util.Observable;
+
+public class Plane extends Observable {
     private Coordinates coordinates; 
     private int speed;               
     private int elevation;           
@@ -63,6 +65,9 @@ public class Plane {
 
     public void setX(int x) {
         this.coordinates.setX(x);
+
+        setChanged();
+		notifyObservers("xValueChanged");
     }
 
     public void setY(int y) {
@@ -71,5 +76,8 @@ public class Plane {
 
     public void setSpeed(int speed) {
         this.speed = speed;
+
+        setChanged();
+		notifyObservers("speedChanged");
     }
 }

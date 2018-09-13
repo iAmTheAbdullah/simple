@@ -22,37 +22,41 @@ public class MainModel extends Observable {
 
                 time++;
 
-                if (time == 2) somePlane.setSpeed(9); // for dev testing purposes
+                // if (time == 2) somePlane.setSpeed(9); // for dev testing purposes
             }
             catch (InterruptedException ex) {}
         }
 
         // Checks for a successful takeoff
-        if (somePlane.getElevation() >= 5 && somePlane.getX() == 5) planeStatus += "\nPlane in air";
-        else planeStatus += "\nTake off failed";
+        if (somePlane.getElevation() >= 5 && somePlane.getX() == 5) planeStatus = "Plane in air";
+        else planeStatus = "Take off failed";
 
-        super.setChanged();
-		super.notifyObservers(this);
+        setChanged();
+		notifyObservers(this);
     }
 
     public void displayStatus(int time) {
         planeStatus = "Seconds: " + time;
-        planeStatus += "\nX: " + somePlane.getX() + " Y: " + somePlane.getY() + " Speed: " + somePlane.getSpeed() + " Elevation: " + somePlane.getElevation();
-
-        super.setChanged();
-		super.notifyObservers(this);
-    }
+        planeStatus += "\nX: " + somePlane.getX() + " Y: " + somePlane.getY() + " Speed: " + somePlane.getSpeed() + " Elevation: " + somePlane.getElevation() + "\n";
+    
+        setChanged();
+		notifyObservers(this);
+}
 
     public void resetSimulation(int time) {
         somePlane.resetPlane();
         initiateSimulation(time);
 
-        super.setChanged();
-		super.notifyObservers(this);
+        setChanged();
+		notifyObservers(this);
     }
 
     public Plane getPlane() {
         return somePlane;
+    }
+
+    public String getPlaneStatus() {
+        return planeStatus;
     }
 
     // public static void main(String[] args) {

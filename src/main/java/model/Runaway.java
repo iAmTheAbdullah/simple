@@ -1,4 +1,4 @@
-package model;Í
+package model;
 
 import java.awt.Rectangle;
 
